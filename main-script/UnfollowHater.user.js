@@ -192,7 +192,7 @@ function top_icon(){
 var followersPage = 40;
 var blogUrl = window.location.protocol+"//www.tumblr.com/blog/";
 var furl = blogUrl+getTumblelog()+"/followers";
-var virgen = (localStorage.getItem(getTumblelog()+"_followersList")==null);
+var virgen = (localStorage.getItem(getTumblelog()+"_followersList")===null);
 console.log("start");
 
 $(document).ready(process);
