@@ -195,7 +195,10 @@ var furl = blogUrl+getTumblelog()+"/followers";
 var virgen = (localStorage.getItem(getTumblelog()+"_followersList")===null);
 console.log("start");
 
-$(document).ready(process);
+$(document).ready(function() {  
+process();
+});
+
 
 
 
