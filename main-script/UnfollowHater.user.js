@@ -77,8 +77,8 @@ function process(){
         var current_list = jQuery.parseJSON(localStorage.getItem(getTumblelog()+"_followersList"));
         var storage_string_unfollower = localStorage.getItem(getTumblelog()+"_unfollowersList");
 
-        var new_followers_list = compare_lists(current_list,follower_list);
-        var unfollowers_list  = compare_lists(follower_list,current_list);
+        var unfollowers_list = compare_lists(current_list,follower_list);
+        var new_followers_list  = compare_lists(follower_list,current_list);
         var total_unfollowers_list = create_total_unfollowers_list((storage_string_unfollower===null)?[]:jQuery.parseJSON(storage_string_unfollower),new_followers_list,unfollowers_list);
 
         if ((unfollowers_list !==null)&&(unfollowers_list.length >  0)){
