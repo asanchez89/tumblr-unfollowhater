@@ -25,7 +25,9 @@
 //      You should have received a copy of the GNU General Public License
 //      along with this program.  If not, see http://www.gnu.org/licenses/gpl-3.0.html
 //***********************************************************************************
-
+if (window.top != window.self)  //-- Don't run on frames or iframes
+    return;
+    
 var FUNCTION_DESCRIPTION_UNFOLLOWER = 'Current new unfollows:';
 var FUNCTION_DESCRIPTION_NEWFOLLOWER = 'Current new followers:';
 var FUNCTION_DESCRIPTION_TOTAL_UNFOLLOWER = 'Total unfollows since this script is running:';
@@ -77,18 +79,12 @@ function process(){
 
         var new_followers_list = compare_lists(current_list,follower_list);
         var unfollowers_list  = compare_lists(follower_list,current_list);
-        var total_unfollowers_list = create_total_unfollowers_list(jQuery.parseJSON(storage_string_unfollower),new_followers_list,unfollowers_list);
+        var total_unfollowers_list = create_total_unfollowers_list((storage_string_unfollower===null)?[]:jQuery.parseJSON(storage_string_unfollower),new_followers_list,unfollowers_list);
 
-        console.log((unfollowers_list !==null));
-        console.log((unfollowers_list.length >  0));
         if ((unfollowers_list !==null)&&(unfollowers_list.length >  0)){
             localStorage.setItem(getTumblelog()+"_unfollowersList",JSON.stringify(total_unfollowers_list));
         }
-
-        console.log(new_followers_list);
-        console.log(unfollowers_list);                                 
-        console.log(total_unfollowers_list);  
-        console.log(localStorage.getItem(getTumblelog()+"_unfollowersList"));
+        
         remove_control(loading_control);
         set_control(unfollowers_list,unfollow_control);
         set_control(new_followers_list,new_follow_control);
@@ -269,11 +265,10 @@ var blogUrl = window.location.protocol+"//www.tumblr.com/blog/";
 var furl = blogUrl+getTumblelog()+"/followers";
 var virgen = (localStorage.getItem(getTumblelog()+"_followersList")===null);
 console.log("start");
-console.log("F: "+localStorage.getItem(getTumblelog()+"_followersList"));
-console.log("U: "+localStorage.getItem(getTumblelog()+"_unfollowersList"));
 
 $(document).ready(function() {  
 process();
+console.log("done");
 });
 
 
