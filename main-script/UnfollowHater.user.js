@@ -89,6 +89,7 @@ function process(){
         set_control(unfollowers_list,unfollow_control);
         set_control(new_followers_list,new_follow_control);
         set_control(total_unfollowers_list,total_follow_control);
+        console.log("done");
     }).fail(function(data,textStatus,errorThrown) {
         display_error({text_status:textStatus, error_thrown:errorThrown});
     });
@@ -268,7 +269,6 @@ console.log("start");
 
 $(document).ready(function() {  
 process();
-console.log("done");
 });
 
 
