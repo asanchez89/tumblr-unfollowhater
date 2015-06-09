@@ -89,6 +89,7 @@ function process(){
         set_control(unfollowers_list,unfollow_control);
         set_control(new_followers_list,new_follow_control);
         set_control(total_unfollowers_list,total_follow_control);
+		localStorage.setItem(getTumblelog()+"_followersList",JSON.stringify(follower_list));
         console.log("done");
     }).fail(function(data,textStatus,errorThrown) {
         display_error({text_status:textStatus, error_thrown:errorThrown});
